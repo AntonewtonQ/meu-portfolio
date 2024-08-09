@@ -21,13 +21,15 @@ const Header = () => {
           <ul className="hidden lg:flex ml-14 space-x-12">
             {navItems.map((item, index) => (
               <li key={index}>
-                <a href={item.href}>{item.label}</a>
+                <a className="text-lg" href={item.href}>
+                  {item.label}
+                </a>
               </li>
             ))}
             <li>
               <a
                 href=""
-                className="bg-gradient-to-r from-blue-500 to-red-800 text-transparent bg-clip-text"
+                className="bg-gradient-to-r text-lg from-blue-500 to-red-800 text-transparent bg-clip-text"
               >
                 Login
               </a>
