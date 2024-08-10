@@ -10,7 +10,7 @@ import {
   Pencil,
   Rocket,
 } from "lucide-react";
-import logo from "../assets/avatar.png";
+import logo from "../assets/back.png";
 
 export const navItems = [
   { label: "Sobre", href: "#" },
@@ -45,38 +45,37 @@ export const socialLinks = [
 export const ServiceData = [
   {
     icon: Crop,
-    title: "Development",
-    content: "Lorem ipsum dolor sit /amet, consectetur adipiscing elit.",
-    backgroundImage: logo,
-  },
-  {
-    icon: Pencil,
-    title: "Branding",
-    content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    title: "Desenvolvimento",
+    content:
+      "Desenvolvemos soluções web e mobile de alta performance, utilizando as tecnologias mais avançadas e as melhores práticas do mercado.",
     backgroundImage: logo,
   },
   {
     icon: LampDesk,
     title: "Design",
-    content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    content:
+      "Criamos designs modernos e funcionais, garantindo uma experiência de usuário intuitiva e visualmente agradável.",
     backgroundImage: logo,
   },
   {
     icon: Book,
     title: "Seo",
-    content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    content:
+      "Otimização para motores de busca para garantir que seu site tenha o melhor desempenho nos resultados de pesquisa.",
     backgroundImage: logo,
   },
   {
     icon: Accessibility,
-    title: "Management",
-    content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    title: "Gerenciamento",
+    content:
+      "Oferecemos serviços de gerenciamento de projetos para garantir que tudo seja entregue no prazo e dentro do orçamento.",
     backgroundImage: logo,
   },
   {
     icon: Rocket,
-    title: "Production",
-    content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    title: "Produção",
+    content:
+      "Damos vida às suas ideias, desde a concepção até a implementação final, garantindo a entrega de produtos de alta qualidade.",
     backgroundImage: logo,
   },
 ];

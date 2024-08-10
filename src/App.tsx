@@ -1,7 +1,7 @@
 import Footer from "./components/footer/Footer";
 import Header from "./components/header/Header";
 import HeroSection from "./components/heroSection/HeroSection";
-import ProjectSection from "./components/projectSection/ProjectSection";
+import ServiceSection from "./components/projectSection/ServiceSection";
 
 function App() {
   return (
@@ -9,7 +9,7 @@ function App() {
       <div className="max-w-7xl mx-auto pt-10 px-6">
         <Header />
         <HeroSection />
-        <ProjectSection />
+        <ServiceSection />
         <Footer />
       </div>
     </>
