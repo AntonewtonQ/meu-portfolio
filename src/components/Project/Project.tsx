@@ -1,12 +1,11 @@
 import { Accessibility, ArrowRight, ArrowUpRight } from "lucide-react";
-import { ServiceData } from "../../constants/constants";
+
 import { Swiper, SwiperSlide } from "swiper/react";
 import { A11y, Navigation, Pagination, Scrollbar } from "swiper/modules";
 import { db } from "../../firebase/firebase.config";
 import { collection, getDocs } from "firebase/firestore";
 
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 // Definição do tipo para os projetos
 interface Project {
@@ -20,7 +19,6 @@ interface Project {
 
 const Project = () => {
   const [projects, setProjects] = useState<Project[]>([]);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProjects = async () => {
