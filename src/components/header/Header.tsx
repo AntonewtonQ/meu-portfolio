@@ -124,9 +124,9 @@ const Header = () => {
                 </li>
               ))}
               <li className="py-4 px-5">
-                <a onClick={toggleModal} href="" className="text-blue-300">
+                <button onClick={toggleModal} className="text-blue-300">
                   Login
-                </a>
+                </button>
               </li>
             </ul>
             <div className="flex space-x-6"></div>
