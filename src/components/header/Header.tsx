@@ -124,7 +124,7 @@ const Header = () => {
                 </li>
               ))}
               <li className="py-4 px-5">
-                <a href="" className="text-blue-300">
+                <a onClick={toggleModal} href="" className="text-blue-300">
                   Login
                 </a>
               </li>

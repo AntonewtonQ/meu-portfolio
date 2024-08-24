@@ -11,10 +11,7 @@ import {
 } from "lucide-react";
 import back from "../assets/back.png";
 
-export const navItems = [
-  { label: "Sobre", href: "#" },
-  { label: "Projetos", href: "#" },
-];
+export const navItems = [{ label: "Sobre", href: "#" }];
 
 export const socialLinks = [
   {
@@ -73,6 +70,6 @@ export const ServiceData = [
     title: "Produção",
     content:
       "Damos vida às suas ideias, desde a concepção até a implementação final, garantindo a entrega de produtos de alta qualidade.",
-    backgroundImage: back ,
+    backgroundImage: back,
   },
 ];
