@@ -1,4 +1,4 @@
-import { Accessibility, ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Proportions } from "lucide-react";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { A11y, Navigation, Pagination, Scrollbar } from "swiper/modules";
@@ -23,7 +23,7 @@ const Project = () => {
   useEffect(() => {
     const fetchProjects = async () => {
       const querySnapshot = await getDocs(collection(db, "projects"));
-      console.log("pico ", querySnapshot);
+
       const projectData = querySnapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
@@ -78,7 +78,7 @@ const Project = () => {
                 />
                 <div className="absolute inset-0 bg-black opacity-10 group-hover:opacity-50" />
                 <div className="relative flex flex-col gap-3">
-                  <Accessibility className="text-blue-600 group-hover:text-blue-400 w-[32px] h-[32px]" />
+                  <Proportions className="text-blue-600 group-hover:text-blue-400 w-[32px] h-[32px]" />
                   <h1 className="text-xl lg:text-2xl">{project.title}</h1>
                   <p className="lg:text-[18px]">{project.description}</p>
                 </div>
