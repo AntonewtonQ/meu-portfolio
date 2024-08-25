@@ -4,6 +4,7 @@ import Header from "./components/header/Header";
 import About from "./components/About/About";
 import Footer from "./components/footer/Footer";
 import Loja from "./components/Loja/Loja";
+import NotFound from "./components/NotFound/NotFound";
 
 function App() {
   return (
@@ -16,8 +17,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/loja" element={<Loja />} />
-
-            {/* Você pode adicionar outras rotas aqui */}
+            <Route path="*" element={<NotFound />} /> {/* Rota 404 */}
           </Routes>
           <Footer />
         </div>
