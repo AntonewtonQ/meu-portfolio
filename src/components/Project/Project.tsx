@@ -1,10 +1,10 @@
-import { ArrowRight, ArrowUpRight, Proportions } from "lucide-react";
+import { ArrowRight, CodeXml } from "lucide-react";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { A11y, Navigation, Pagination, Scrollbar } from "swiper/modules";
 import { db } from "../../firebase/firebase.config";
 import { collection, getDocs } from "firebase/firestore";
-
+import back from "../../assets/back_pro01.avif";
 import { useEffect, useState } from "react";
 
 // Definição do tipo para os projetos
@@ -55,7 +55,7 @@ const Project = () => {
           scrollbar={{ draggable: true }}
           breakpoints={{
             0: {
-              slidesPerView: 2,
+              slidesPerView: 1,
               spaceBetween: 30,
             },
             640: {
@@ -70,19 +70,20 @@ const Project = () => {
             <SwiperSlide key={project.id}>
               <div
                 onClick={() => handleProjectClick(project.url)}
-                className="flex flex-col gap-6 mb-20 group relative shadow-lg text-white rounded-xl px-6 py-8 h-[350px] w-[215px] lg:h-[400px] lg:w-[350px] overflow-hidden cursor-pointer"
+                className="flex flex-col gap-6 mb-20 group relative shadow-lg text-white rounded-xl px-6 py-8 h-[230px] w-[215px] lg:h-[270px] lg:w-[350px] overflow-hidden cursor-pointer"
               >
                 <div
                   className="absolute inset-0 bg-cover bg-center"
-                  style={{ backgroundImage: `url(${project.thumbnail})` }}
+                  style={{ backgroundImage: `url(${back})` }}
                 />
                 <div className="absolute inset-0 bg-black opacity-10 group-hover:opacity-50" />
                 <div className="relative flex flex-col gap-3">
-                  <Proportions className="text-blue-600 group-hover:text-blue-400 w-[32px] h-[32px]" />
+                  <CodeXml className="text-blue-600 group-hover:text-blue-400 w-[32px] h-[32px]" />
                   <h1 className="text-xl lg:text-2xl">{project.title}</h1>
-                  <p className="lg:text-[18px]">{project.description}</p>
+                  <p className="hidden lg:block lg:text-[18px]">
+                    {project.description}
+                  </p>
                 </div>
-                <ArrowUpRight className="absolute bottom-5 left-5 w-[35px] h-[35px] text-white group-hover:text-blue-500 group-hover:rotate-45 duration-100" />
               </div>
             </SwiperSlide>
           ))}

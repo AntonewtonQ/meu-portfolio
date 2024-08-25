@@ -4,7 +4,7 @@ import "swiper/css/pagination";
 import "swiper/css/free-mode";
 
 import { A11y, Navigation, Pagination, Scrollbar } from "swiper/modules";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { ServiceData } from "../../constants/constants";
 
 const ServiceSection = () => {
@@ -24,7 +24,7 @@ const ServiceSection = () => {
           breakpoints={{
             // Quando a tela tiver 640px ou mais (tablets e desktops)
             0: {
-              slidesPerView: 2,
+              slidesPerView: 1,
               spaceBetween: 30,
             },
             // Quando a tela tiver 1024px ou mais (desktops maiores)
@@ -49,7 +49,6 @@ const ServiceSection = () => {
                   <h1 className="text-xl lg:text-2xl">{item.title} </h1>
                   <p className="lg:text-[18px]">{item.content} </p>
                 </div>
-                <ArrowUpRight className="absolute bottom-5 left-5 w-[35px] h-[35px] text-white group-hover:text-blue-500 group-hover:rotate-45 duration-100" />
               </div>
             </SwiperSlide>
           ))}

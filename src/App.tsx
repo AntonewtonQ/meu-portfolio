@@ -1,9 +1,9 @@
-import { BrowserRouter } from "react-router-dom";
-import Footer from "./components/footer/Footer";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Home from "./components/Home/Home";
 import Header from "./components/header/Header";
-import HeroSection from "./components/heroSection/HeroSection";
-import Project from "./components/Project/Project";
-import ServiceSection from "./components/projectSection/ServiceSection";
+import About from "./components/About/About";
+import Footer from "./components/footer/Footer";
+import Loja from "./components/Loja/Loja";
 
 function App() {
   return (
@@ -11,9 +11,14 @@ function App() {
       <BrowserRouter>
         <div className="max-w-7xl mx-auto pt-10 px-6">
           <Header />
-          <HeroSection />
-          <ServiceSection />
-          <Project />
+
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/loja" element={<Loja />} />
+
+            {/* Você pode adicionar outras rotas aqui */}
+          </Routes>
           <Footer />
         </div>
       </BrowserRouter>

@@ -11,7 +11,10 @@ import {
 } from "lucide-react";
 import back from "../assets/back.png";
 
-export const navItems = [{ label: "Sobre", href: "#" }];
+export const navItems = [
+  { label: "Sobre", href: "/about" },
+  { label: "Loja", href: "/loja" },
+];
 
 export const socialLinks = [
   {

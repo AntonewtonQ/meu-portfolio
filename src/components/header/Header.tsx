@@ -19,12 +19,12 @@ const Header = () => {
 
     // Limpa as caixas de entrada ao fechar o modal e foca na primeira caixa ao abrir o modal
     if (!isModalOpen) {
-      setLoginInput(Array(10).fill(""));
+      setLoginInput(Array(6).fill(""));
       setTimeout(() => {
         inputRefs.current[0]?.focus();
       }, 0);
     } else {
-      setLoginInput(Array(10).fill(""));
+      setLoginInput(Array(6).fill(""));
     }
   };
 
@@ -68,7 +68,7 @@ const Header = () => {
         setIsModalOpen(false);
         // Limpa as caixas de entrada ao fechar o modal
         if (isModalOpen) {
-          setLoginInput(Array(10).fill(""));
+          setLoginInput(Array(6).fill(""));
         }
       }
     };
@@ -86,10 +86,10 @@ const Header = () => {
     <nav className="sticky top-0 z-50 py-3 backdrop-blur-lg border my-4 rounded-full border-neutral-700/80">
       <div className="container px-5 mx-auto relative text-sm">
         <div className="flex justify-between items-center">
-          <div className="flex items-center flex-shrink-0">
+          <a href="/" className="flex items-center flex-shrink-0">
             <img className="h-10 w-10 mr-2" src={avatar} alt="logo" />
             <span className="text-xl tracking-tight">antonewton</span>
-          </div>
+          </a>
           <ul className="hidden lg:flex ml-14 space-x-12">
             {navItems.map((item, index) => (
               <li key={index}>

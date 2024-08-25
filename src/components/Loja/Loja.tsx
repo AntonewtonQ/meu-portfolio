@@ -1,6 +1,6 @@
 import { Hammer } from "lucide-react";
 
-const About = () => {
+const Loja = () => {
   return (
     <>
       <div className="max-w-7xl mx-auto pt-10 px-6 flex flex-col items-center justify-center h-screen text-center">
@@ -14,4 +14,4 @@ const About = () => {
   );
 };
 
-export default About;
+export default Loja;
