@@ -5,6 +5,8 @@ import About from "./components/About/About";
 import Footer from "./components/footer/Footer";
 import Loja from "./components/Loja/Loja";
 import NotFound from "./components/NotFound/NotFound";
+import PrivateRoute from "./components/privateRoute/PrivateRoute";
+import Dashboard from "./components/Dashboard/Dashboard";
 
 function App() {
   return (
@@ -18,6 +20,14 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/loja" element={<Loja />} />
             <Route path="*" element={<NotFound />} /> {/* Rota 404 */}
+            <Route
+              path="/dashboard"
+              element={
+                <PrivateRoute>
+                  <Dashboard />
+                </PrivateRoute>
+              }
+            />
           </Routes>
           <Footer />
         </div>

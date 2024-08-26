@@ -8,7 +8,7 @@ const HeroLoja = () => {
           comunidade de desenvolvedores.
         </p>
         <p className="text-lg text-neutral-400">
-          Confecção, manuseio e entrega garantidos pela{" "}
+          Confecção, manuseio e entrega garantidos por{" "}
           <a href="/" className="bold text-neutral-300 underline">
             antonewton
           </a>{" "}

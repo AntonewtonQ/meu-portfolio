@@ -1,12 +1,21 @@
 import { Menu, X } from "lucide-react";
-import { ChangeEvent, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, ChangeEvent } from "react";
 import avatar from "../../assets/avatar.png";
 import { navItems } from "../../constants/constants";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../firebase/firebase.config";
+import { useAuth } from "../../contexts/authContext";
 
 const Header = () => {
+  const { userLoggedIn, logout } = useAuth(); // Inclua a função de logout
+
+  const [email] = useState("antonewtonquima@gmail.com");
+  const [isSigningIn, setIsSigningIn] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+
   const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [loginInput, setLoginInput] = useState(Array(10).fill(""));
+  const [loginInput, setLoginInput] = useState(Array(6).fill(""));
 
   const inputRefs = useRef<Array<HTMLInputElement | null>>([]);
 
@@ -16,8 +25,6 @@ const Header = () => {
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
-
-    // Limpa as caixas de entrada ao fechar o modal e foca na primeira caixa ao abrir o modal
     if (!isModalOpen) {
       setLoginInput(Array(6).fill(""));
       setTimeout(() => {
@@ -36,37 +43,41 @@ const Header = () => {
     newLoginInput[index] = e.target.value.slice(0, 1); // Limita a 1 caractere
     setLoginInput(newLoginInput);
 
-    // Move o foco para o próximo input se houver um próximo
     if (e.target.value && index < inputRefs.current.length - 1) {
       inputRefs.current[index + 1]?.focus();
     }
 
-    // Mover o foco para o campo anterior se o usuário apagar o caractere
     if (!e.target.value && index > 0) {
       inputRefs.current[index - 1]?.focus();
     }
   };
 
   useEffect(() => {
-    // Verifica se todos os campos foram preenchidos
     if (loginInput.every((char) => char !== "")) {
       handleLogin();
     }
   }, [loginInput]);
 
-  const handleLogin = () => {
-    // Lógica para tratar o login
-    console.log("Login Input:", loginInput.join(""));
-    // Aqui você pode adicionar a lógica de autenticação ou enviar o loginInput para o backend.
-    setIsModalOpen(false);
+  const handleLogin = async () => {
+    const password = loginInput.join("");
+
+    try {
+      setIsSigningIn(true);
+      await signInWithEmailAndPassword(auth, email, password);
+      console.log("Login bem-sucedido");
+      setIsModalOpen(false);
+    } catch (error: any) {
+      setErrorMessage("Erro ao fazer login. Verifique a palavra-passe.");
+      console.error("Erro ao fazer login:", error.message);
+    } finally {
+      setIsSigningIn(false);
+    }
   };
 
-  // Fechar modal ao pressionar Esc
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         setIsModalOpen(false);
-        // Limpa as caixas de entrada ao fechar o modal
         if (isModalOpen) {
           setLoginInput(Array(6).fill(""));
         }
@@ -98,14 +109,32 @@ const Header = () => {
                 </a>
               </li>
             ))}
-            <li>
-              <button
-                onClick={toggleModal}
-                className="bg-gradient-to-r text-lg from-blue-500 to-red-800 text-transparent bg-clip-text"
-              >
-                Login
-              </button>
-            </li>
+
+            {/* Exibir o link para o Dashboard apenas se o usuário estiver logado */}
+            {userLoggedIn && (
+              <li>
+                <a className="text-lg" href="/dashboard">
+                  Dashboard
+                </a>
+              </li>
+            )}
+
+            {!userLoggedIn ? (
+              <li>
+                <button
+                  onClick={toggleModal}
+                  className="bg-gradient-to-r text-lg from-blue-500 to-red-800 text-transparent bg-clip-text"
+                >
+                  Login
+                </button>
+              </li>
+            ) : (
+              <li>
+                <button onClick={logout} className="text-lg text-red-500">
+                  Logout
+                </button>
+              </li>
+            )}
           </ul>
 
           <div className="lg:hidden md:flex flex-col justify-end">
@@ -123,13 +152,28 @@ const Header = () => {
                   <a href={item.href}>{item.label}</a>
                 </li>
               ))}
-              <li className="py-4 px-5">
-                <button onClick={toggleModal} className="text-blue-300">
-                  Login
-                </button>
-              </li>
+
+              {/* Exibir o link para o Dashboard apenas se o usuário estiver logado */}
+              {userLoggedIn && (
+                <li className="py-4 px-5">
+                  <a href="/dashboard">Dashboard</a>
+                </li>
+              )}
+
+              {!userLoggedIn ? (
+                <li className="py-4 px-5">
+                  <button onClick={toggleModal} className="text-blue-300">
+                    Login
+                  </button>
+                </li>
+              ) : (
+                <li className="py-4 px-5">
+                  <button onClick={logout} className="text-red-500">
+                    Logout
+                  </button>
+                </li>
+              )}
             </ul>
-            <div className="flex space-x-6"></div>
           </div>
         )}
 
@@ -152,16 +196,21 @@ const Header = () => {
                   />
                 ))}
               </div>
+              {errorMessage && (
+                <p className="text-red-500 mt-4">{errorMessage}</p>
+              )}
               <div className="mt-6 flex justify-center space-x-4">
                 <button
                   onClick={handleLogin}
                   className="px-4 py-2 bg-blue-500 text-white rounded-lg"
+                  disabled={isSigningIn}
                 >
-                  Login
+                  {isSigningIn ? "Entrando..." : "Login"}
                 </button>
                 <button
                   onClick={toggleModal}
                   className="px-4 py-2 bg-red-500 text-white rounded-lg"
+                  disabled={isSigningIn}
                 >
                   Cancelar
                 </button>

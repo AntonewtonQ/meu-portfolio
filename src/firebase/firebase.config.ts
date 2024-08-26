@@ -1,9 +1,10 @@
 
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  apiKey: "AIzaSyDGMfwKIS_T87j9kAKBjmGgfFub9_p4MiQ",
   authDomain: "antonewtonq.firebaseapp.com",
   projectId: "antonewtonq",
   storageBucket: "antonewtonq.appspot.com",
@@ -15,5 +16,6 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+const auth = getAuth(app);
 
-export { db };
+export { auth,db };
