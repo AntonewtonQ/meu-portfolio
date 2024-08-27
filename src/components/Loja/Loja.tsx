@@ -1,25 +1,42 @@
+import { useEffect, useState } from "react";
 import HeroLoja from "../HeroLoja/HeroLoja";
 import ProductCard from "../ProductCard/ProductCard";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../../firebase/firebase.config";
+
+interface Item {
+  id: string;
+  name: string;
+  price: number;
+  imageUrl: string;
+}
 
 const Loja = () => {
+  const [items, setItems] = useState<Item[]>([]);
+
+  useEffect(() => {
+    const fetchItems = async () => {
+      const querySnapshot = await getDocs(collection(db, "items"));
+      setItems(
+        querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        })) as Item[]
+      );
+    };
+    fetchItems();
+  }, []);
+
   return (
     <>
       <HeroLoja />
-      <ProductCard />
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
+        {items.map((item) => (
+          <ProductCard key={item.id} item={item} />
+        ))}
+      </div>
     </>
   );
 };
 
 export default Loja;
-
-/*
-Ajuda
-<div className="max-w-7xl mx-auto pt-10 px-6 flex flex-col items-center justify-center h-screen text-center">
-        <Hammer className="w-16 h-16 text-blue-600 mb-4" />
-        <h1 className="text-3xl font-bold text-gray-800">Em construção</h1>
-        <p className="text-gray-600 mt-2">
-          Esta página estará disponível em breve. Fique atento!
-        </p>
-      </div>
-
-*/
