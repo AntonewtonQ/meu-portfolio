@@ -7,6 +7,7 @@ import Loja from "./components/Loja/Loja";
 import NotFound from "./components/NotFound/NotFound";
 import PrivateRoute from "./components/privateRoute/PrivateRoute";
 import Dashboard from "./components/Dashboard/Dashboard";
+import { Analytics } from "@vercel/analytics/react";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           <Footer />
         </div>
       </BrowserRouter>
+      <Analytics />
     </>
   );
 }
