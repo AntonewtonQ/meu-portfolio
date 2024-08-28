@@ -12,7 +12,7 @@ interface ProductCardProps {
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ item }) => {
-  const [isDisabled] = useState(true);
+  const [isDisabled] = useState(false);
 
   const handleBuyClick = () => {
     const message = `Olá, gostaria de comprar o item "${item.name}" com o preço de ${item.price},00 AOA.`;
